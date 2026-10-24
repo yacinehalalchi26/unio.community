@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>unio. — What if you knew your neighbours?</title>
-<meta name="description" content="UNIO turns apartment buildings into places where people know your name. Starting in Montréal.">
+<title>Unio — Join the community.</title>
+<meta name="description" content="Your own apartment, in a building where people know your name. Unio brings the dinners, the circles and the city outings. Starting in Montréal.">
 <meta name="author" content="Unio Inc.">
 <meta name="copyright" content="© 2026 Unio Inc.">
-<meta property="og:title" content="unio. — What if you knew your neighbours?">
+<meta property="og:title" content="Unio — Join the community.">
 <meta property="og:description" content="Together, for real. Join the list or request the owner brief.">
+<meta property="og:image" content="unio-bg-poster.jpg">
 <meta property="og:site_name" content="Unio">
-<meta name="theme-color" content="#F6F4EC">
+<meta name="theme-color" content="#16241C">
 <style>:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,9 +27,11 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 24px; }
 .ink { filter: url(#ink); }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--forest); }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--euca); outline-offset: 3px; border-radius: 6px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -40,6 +43,10 @@ a { color: inherit; }
 .brand .mark { width: 30px; height: 30px; }
 .brand .word { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1; letter-spacing: 0.01em; }
 .brand .word span { color: var(--clay); }
+.btn-sand { background: var(--sand); color: var(--forest); }
+.btn-sand:hover { background: #F0E6CA; }
+.links a.btn-sand, .links a.btn-sand:hover { color: var(--forest); }
+.links a.btn-primary, .links a.btn-primary:hover { color: var(--chalk); }
 .links { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
 .links a { text-decoration: none; font-size: 15px; font-weight: 600; color: var(--fg); }
 .links a:hover { color: var(--clay); }
@@ -59,16 +66,31 @@ a { color: inherit; }
 .nav .btn { min-height: 42px; padding: 0 20px; }
 
 /* Hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 600px); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(32px, 6vw, 72px) clamp(48px, 7vw, 96px); }
+/* Video band: the Thursday table behind the header and hero, under a forest veil so the chalk type stays readable */
+.band { position: relative; background: var(--forest); color: var(--chalk); overflow: hidden; isolation: isolate; }
+.band .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: saturate(0.85); }
+.band .veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(22,36,28,0.78) 0%, rgba(22,36,28,0.62) 45%, rgba(22,36,28,0.86) 100%); }
+.band .links a { color: var(--chalk); }
+.band .links a:hover { color: var(--sand); }
+.band .lang { background: rgba(246,244,236,0.08); border-color: rgba(246,244,236,0.28); }
+.band .lang button { color: #D5DDD6; }
+.band .lang button[aria-pressed="true"] { background: var(--chalk); color: var(--forest); }
+.band .brand .word span { color: var(--sand); }
+.band .eyebrow { color: var(--sand); }
+.band .sub { color: #D5DDD6; }
+.band .note { color: var(--sand); }
+.band :focus-visible { outline-color: var(--sand); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 600px); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(40px, 7vw, 96px) clamp(56px, 8vw, 112px); }
 .copy { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
 .eyebrow { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--euca); }
-h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(50px, 7.2vw, 104px); line-height: 0.96; letter-spacing: 0.005em; text-wrap: balance; }
+h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(54px, 7.6vw, 112px); line-height: 0.95; letter-spacing: 0.005em; text-wrap: balance; }
 .sub { margin: 0; max-width: 34em; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.7; color: var(--muted); }
 .ctas { display: flex; flex-wrap: wrap; gap: 14px; padding-top: 2px; }
 .note { margin: 0; font-family: var(--display); font-size: 24px; letter-spacing: 0.01em; color: var(--clay); }
 
 /* Form */
-.waitlist { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 16px; max-width: 600px; width: 100%; justify-self: end; }
+.waitlist { background: var(--panel); color: var(--forest); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: grid; gap: 16px; max-width: 600px; width: 100%; justify-self: end; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28); }
+.waitlist h2, .waitlist .done .big { color: var(--forest); }
 .seg { margin: 0; padding: 4px; border: 1px solid var(--line); border-radius: 999px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--soft); }
 .seg label { position: relative; display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; text-align: center; padding: 0 12px; }
 .seg input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
@@ -102,18 +124,19 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
 .err { margin: 0; font-size: 14px; color: var(--clay); font-weight: 600; }
 
 /* Philosophy: the one word, explained */
-.philo { background: var(--chalk); border-top: 1px solid var(--line); }
+.philo { background: var(--forest); color: var(--chalk); }
 .philo .wrap { padding-block: clamp(56px, 8vw, 96px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
 .philo .word { min-width: 0; }
-.philo .big { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(56px, 7.4vw, 100px); line-height: 0.95; letter-spacing: 0.005em; color: var(--clay); }
-.philo .small { margin: 10px 0 0; font-size: 15px; color: var(--muted); }
+.philo .big { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(56px, 7.4vw, 100px); line-height: 0.95; letter-spacing: 0.005em; color: var(--sand); }
+.philo .small { margin: 10px 0 0; font-size: 15px; color: #B6BFB8; }
 .philo .text { display: grid; gap: 16px; min-width: 0; }
 .philo .text p { margin: 0; }
-.philo .text p:not(.eyebrow) { font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 34em; }
+.philo .text p:not(.eyebrow) { font-size: 17px; line-height: 1.7; color: #D5DDD6; max-width: 34em; }
+.philo .eyebrow { color: var(--sand); }
 @media (max-width: 900px) { .philo .wrap { grid-template-columns: minmax(0, 1fr); } }
 
 /* The lights are on: the building in its night panel, as a closing section */
-.lights { background: var(--chalk); border-top: 1px solid var(--line); }
+.lights { background: var(--chalk); }
 .lights .wrap { padding-block: clamp(56px, 8vw, 96px); display: grid; gap: 28px; justify-items: center; text-align: center; }
 .lights h2 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(38px, 5vw, 60px); letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.05; }
 .art { position: relative; min-width: 0; width: 100%; max-width: 560px; margin: 0; background: var(--forest); border-radius: 26px; padding: 26px; }
@@ -196,7 +219,10 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
   .seg label { font-size: 13px; padding: 0 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .btn { transition: none; } .btn:hover { transform: none; }
+  .band .bg { display: none; }
+  .band { background: var(--forest) url("unio-bg-poster.jpg") center / cover no-repeat; }
 }
 </style>
 
@@ -220,11 +246,16 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
     </filter>
   </defs>
 </svg>
-<header class="wrap">
+<div class="band">
+  <video class="bg" autoplay muted loop playsinline preload="metadata" poster="unio-bg-poster.jpg" aria-hidden="true">
+    <source src="unio-bg.mp4" type="video/mp4">
+  </video>
+  <div class="veil" aria-hidden="true"></div>
+  <header class="wrap">
   <div class="nav">
-    <a class="brand" href="#top" aria-label="UNIO home">
-      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><g fill="#16241C"><circle cx="34" cy="20" r="3"/><circle cx="29.9" cy="29.9" r="3"/><circle cx="20" cy="34" r="3"/><circle cx="10.1" cy="29.9" r="3"/><circle cx="6" cy="20" r="3"/><circle cx="10.1" cy="10.1" r="3"/><circle cx="29.9" cy="10.1" r="3"/></g><circle cx="20" cy="6" r="3.4" fill="#A0533C"/></svg>
-      <span class="word ink">unio<span>.</span></span>
+    <a class="brand" href="#top" aria-label="Unio home">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><g fill="#F6F4EC"><circle cx="34" cy="20" r="3"/><circle cx="29.9" cy="29.9" r="3"/><circle cx="20" cy="34" r="3"/><circle cx="10.1" cy="29.9" r="3"/><circle cx="6" cy="20" r="3"/><circle cx="10.1" cy="10.1" r="3"/><circle cx="29.9" cy="10.1" r="3"/></g><circle cx="20" cy="6" r="4" fill="#A0533C"/></svg>
+      <span class="word ink">unio</span>
     </a>
     <nav class="links" aria-label="Primary">
       <a class="hide-sm" href="#values" data-i18n="nav_values">Values</a>
@@ -234,19 +265,17 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
         <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" id="lang-fr" data-lang="fr" aria-pressed="false">FR</button>
       </div>
-      <a class="btn btn-forest" href="#join" data-mode="resident" data-i18n="nav_cta">Join the list</a>
+      <a class="btn btn-primary" href="#join" data-mode="resident" data-i18n="nav_cta">Join the list</a>
     </nav>
   </div>
-</header>
+  </header>
 
 <main id="top">
   <section class="wrap hero">
     <div class="copy">
       <p class="eyebrow" data-i18n="eyebrow">Montréal · First buildings 2027</p>
-      <h1 class="ink" data-i18n="h1">What if you knew your neighbours?</h1>
-      <p class="sub" data-i18n="sub">UNIO is the part of a building that remembers your name. Dinner on Thursdays. A hello in the hallway. A city that feels smaller, in the good way.</p>
-
-
+      <h1 class="ink" data-i18n="h1">Join the community.</h1>
+      <p class="sub" data-i18n="sub">Your own apartment, in a building where people know your name. Unio brings the dinners, the circles and the city outings. Come when you want, as you are.</p>
       <p class="note" data-i18n="note">Together, for real.</p>
     </div>
       <form class="waitlist" id="join" novalidate data-endpoint="">
@@ -255,7 +284,7 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
           <label><input type="radio" name="who" value="resident" id="who-resident" checked><span data-i18n="seg_resident">Join the list</span></label>
           <label><input type="radio" name="who" value="owner" id="who-owner"><span data-i18n="seg_owner">I own a building</span></label>
         </fieldset>
-        <h2 id="form-title" data-i18n="form_title_res">Be the first to know where UNIO is active.</h2>
+        <h2 id="form-title" data-i18n="form_title_res">Be the first to know where Unio is active.</h2>
         <div class="fields" id="fields">
           <div class="field">
             <label for="first" data-i18n="form_first">First name</label>
@@ -297,7 +326,7 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
               <option value="youtube">YouTube</option>
               <option value="google">Google</option>
               <option value="neighbour" data-i18n="src_neighbour">A neighbour or friend</option>
-              <option value="resident" data-i18n="src_resident">A current UNIO resident</option>
+              <option value="resident" data-i18n="src_resident">A current Unio resident</option>
               <option value="poster" data-i18n="src_poster">A poster in a building</option>
               <option value="event" data-i18n="src_event">An event</option>
               <option value="employer" data-i18n="src_employer">My employer</option>
@@ -320,8 +349,8 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
           </div>
         </div>
         <div class="row" id="row">
-          <p class="fine" id="fine" data-i18n="form_fine_res">One email when UNIO becomes active in a building near you. No newsletters, and you can leave the list at any time.</p>
-          <button class="btn btn-forest" type="submit" id="submit" data-i18n="form_submit_res">Keep me posted</button>
+          <p class="fine" id="fine" data-i18n="form_fine_res">One email when Unio becomes active in a building near you. No newsletters, and you can leave the list at any time.</p>
+          <button class="btn btn-primary" type="submit" id="submit" data-i18n="form_submit_res">Keep me posted</button>
         </div>
         <p class="err" id="err" hidden></p>
         <div class="done" id="done" hidden>
@@ -331,6 +360,7 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
       </form>
 
   </section>
+</div>
 
   <section class="around" id="montreal">
     <div class="wrap">
@@ -455,7 +485,7 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
       <div class="text">
         <p class="eyebrow" data-i18n="ph_eyebrow">Our philosophy</p>
         <p data-i18n="ph_p1">In French, ensemble means together. In English, an ensemble is a group of musicians who only sound right when they play as one: no soloists, no audience, everyone carrying a part.</p>
-        <p data-i18n="ph_p2">That is what a building can be. UNIO sets the tempo (Thursday, seven o'clock), hands out the parts (a welcome, a table, a few circles) and then steps back. The music is the neighbours. It always was.</p>
+        <p data-i18n="ph_p2">That is what a building can be. Unio sets the tempo (Thursday, seven o'clock), hands out the parts (a welcome, a table, a few circles) and then steps back. The music is the neighbours. It always was.</p>
       </div>
     </div>
   </section>
@@ -489,23 +519,23 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
     en: {
       nav_values: "Values", nav_places: "Montréal", nav_owners: "For owners", nav_cta: "Join the list",
       eyebrow: "Montréal · First buildings 2027",
-      h1: "What if you knew your neighbours?",
-      sub: "UNIO is the part of a building that remembers your name. Dinner on Thursdays. A hello in the hallway. A city that feels smaller, in the good way.",
+      h1: "Join the community.",
+      sub: "Your own apartment, in a building where people know your name. Unio brings the dinners, the circles and the city outings. Come when you want, as you are.",
       cta_join: "Join the list", cta_owner: "I own a building",
       seg_legend: "I want to", seg_resident: "Join the list", seg_owner: "I own a building",
-      form_title_res: "Be the first to know where UNIO is active.", form_title_own: "Tell us about your building.",
-      form_first: "First name", form_last: "Last name", form_phone: "Phone", form_source: "How did you hear about us?", src_pick: "Choose one", src_neighbour: "A neighbour or friend", src_resident: "A current UNIO resident", src_poster: "A poster in a building", src_event: "An event", src_employer: "My employer", src_press: "Press or podcast", src_other: "Other", form_city: "City", form_city_other: "Another city…", form_other_city: "Your city", form_other_ph: "Start typing…", city_free: "Not on our list yet — just type it in.",
+      form_title_res: "Be the first to know where Unio is active.", form_title_own: "Tell us about your building.",
+      form_first: "First name", form_last: "Last name", form_phone: "Phone", form_source: "How did you hear about us?", src_pick: "Choose one", src_neighbour: "A neighbour or friend", src_resident: "A current Unio resident", src_poster: "A poster in a building", src_event: "An event", src_employer: "My employer", src_press: "Press or podcast", src_other: "Other", form_city: "City", form_city_other: "Another city…", form_other_city: "Your city", form_other_ph: "Start typing…", city_free: "Not on our list yet — just type it in.",
       form_units: "Apartments", form_units_pick: "Building size", u1: "Under 50",
       form_company: "Company", form_company_ph: "Optional", form_email: "Email", form_email_work: "Work email",
-      form_fine_res: "One email when UNIO becomes active in a building near you. No newsletters, and you can leave the list at any time.",
+      form_fine_res: "One email when Unio becomes active in a building near you. No newsletters, and you can leave the list at any time.",
       form_fine_own: "We'll send the owner brief: the three packages, pricing by building size, and what the first 90 days look like.",
       form_submit_res: "Keep me posted", form_submit_own: "Request the owner brief",
       err_first: "What is your first name?", err_last: "And your last name?", err_city: "Which city?", err_units: "Tell us roughly how many apartments.", err_email: "That email address doesn't look right.", err_phone: "That phone number doesn't look right.",
-      done_big_res: "You're on the list, {name}.", done_small_res: "We'll write to {email} the week UNIO is active in Montréal.", done_small_far: "Montréal first, {city} when we get there. We'll write to {email}.",
+      done_big_res: "You're on the list, {name}.", done_small_res: "We'll write to {email} the week Unio is active in Montréal.", done_small_far: "Montréal first, {city} when we get there. We'll write to {email}.",
       done_big_own: "Request received, {name}.", done_small_own: "We'll reply to {email} with the owner brief for your {city} building.",
       note: "Together, for real.", ph_eyebrow: "Our philosophy", ph_line: "One word, both our languages.",
       ph_p1: "In French, ensemble means together. In English, an ensemble is a group of musicians who only sound right when they play as one: no soloists, no audience, everyone carrying a part.",
-      ph_p2: "That is what a building can be. UNIO sets the tempo (Thursday, seven o'clock), hands out the parts (a welcome, a table, a few circles) and then steps back. The music is the neighbours. It always was.", l_title: "The lights are on.", l_text: "First buildings open in Montréal in 2027. Join the list and we'll write the week the lights come on near you.",
+      ph_p2: "That is what a building can be. Unio sets the tempo (Thursday, seven o'clock), hands out the parts (a welcome, a table, a few circles) and then steps back. The music is the neighbours. It always was.", l_title: "The lights are on.", l_text: "First buildings open in Montréal in 2027. Join the list and we'll write the week the lights come on near you.",
       ar_title: "Around the table, around the city",
       ar_intro: "Everything starts at the Thursday table. From there, Montréal: the market, the mountain, the canal, the rink. Residents suggest, we organise, nobody takes attendance.",
       a1: "Thursday dinner", a1d: "One long table, every week.", a2: "Bagel run", a2d: "Hot from the oven, Mile End.", a3: "Market mornings", a3d: "Jean-Talon or Atwater, together.",
@@ -520,23 +550,23 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
     fr: {
       nav_values: "Valeurs", nav_places: "Montréal", nav_owners: "Propriétaires", nav_cta: "Rejoindre la liste",
       eyebrow: "Montréal · Premiers immeubles en 2027",
-      h1: "Et si vous connaissiez vos voisins?",
-      sub: "UNIO, c'est la partie de l'immeuble qui se souvient de votre nom. Un souper le jeudi. Un bonjour dans le corridor. Une ville qui paraît plus petite, dans le bon sens.",
+      h1: "Rejoignez la communauté.",
+      sub: "Votre propre appartement, dans un immeuble où l'on connaît votre nom. Unio apporte les soupers, les cercles et les sorties en ville. Venez quand vous voulez, comme vous êtes.",
       cta_join: "Rejoindre la liste", cta_owner: "Je possède un immeuble",
       seg_legend: "Je veux", seg_resident: "Rejoindre la liste", seg_owner: "Je possède un immeuble",
-      form_title_res: "Soyez les premiers à savoir où UNIO est actif.", form_title_own: "Parlez-nous de votre immeuble.",
-      form_first: "Prénom", form_last: "Nom de famille", form_phone: "Téléphone", form_source: "Comment nous avez-vous connus?", src_pick: "Choisir", src_neighbour: "Un voisin ou un ami", src_resident: "Un résident UNIO", src_poster: "Une affiche dans un immeuble", src_event: "Un événement", src_employer: "Mon employeur", src_press: "Presse ou balado", src_other: "Autre", form_city: "Ville", form_city_other: "Une autre ville…", form_other_city: "Votre ville", form_other_ph: "Commencez à écrire…", city_free: "Pas encore dans notre liste — écrivez-la simplement.",
+      form_title_res: "Soyez les premiers à savoir où Unio est actif.", form_title_own: "Parlez-nous de votre immeuble.",
+      form_first: "Prénom", form_last: "Nom de famille", form_phone: "Téléphone", form_source: "Comment nous avez-vous connus?", src_pick: "Choisir", src_neighbour: "Un voisin ou un ami", src_resident: "Un résident Unio", src_poster: "Une affiche dans un immeuble", src_event: "Un événement", src_employer: "Mon employeur", src_press: "Presse ou balado", src_other: "Autre", form_city: "Ville", form_city_other: "Une autre ville…", form_other_city: "Votre ville", form_other_ph: "Commencez à écrire…", city_free: "Pas encore dans notre liste — écrivez-la simplement.",
       form_units: "Logements", form_units_pick: "Taille de l'immeuble", u1: "Moins de 50",
       form_company: "Entreprise", form_company_ph: "Facultatif", form_email: "Courriel", form_email_work: "Courriel professionnel",
-      form_fine_res: "Un seul courriel quand UNIO devient actif dans un immeuble près de chez vous. Pas d'infolettre, et vous pouvez quitter la liste à tout moment.",
+      form_fine_res: "Un seul courriel quand Unio devient actif dans un immeuble près de chez vous. Pas d'infolettre, et vous pouvez quitter la liste à tout moment.",
       form_fine_own: "Nous vous enverrons le dossier propriétaire : les trois forfaits, la tarification selon la taille et à quoi ressemblent les 90 premiers jours.",
       form_submit_res: "Tenez-moi au courant", form_submit_own: "Demander le dossier propriétaire",
       err_first: "Quel est votre prénom?", err_last: "Et votre nom de famille?", err_city: "Quelle ville?", err_units: "Indiquez approximativement le nombre de logements.", err_email: "Cette adresse courriel ne semble pas valide.", err_phone: "Ce numéro de téléphone ne semble pas valide.",
-      done_big_res: "Vous êtes sur la liste, {name}.", done_small_res: "On vous écrit à {email} la semaine où UNIO devient actif à Montréal.", done_small_far: "Montréal d'abord, {city} quand nous y serons. On vous écrit à {email}.",
+      done_big_res: "Vous êtes sur la liste, {name}.", done_small_res: "On vous écrit à {email} la semaine où Unio devient actif à Montréal.", done_small_far: "Montréal d'abord, {city} quand nous y serons. On vous écrit à {email}.",
       done_big_own: "Demande reçue, {name}.", done_small_own: "Nous répondrons à {email} avec le dossier propriétaire pour votre immeuble à {city}.",
       note: "Ensemble, pour de vrai.", ph_eyebrow: "Notre philosophie", ph_line: "Un mot, nos deux langues.",
       ph_p1: "En français, ensemble veut dire les uns avec les autres. En anglais, un ensemble, c'est un groupe de musiciens qui ne sonne juste que lorsqu'il joue comme un seul : pas de soliste, pas de public, chacun tient sa partie.",
-      ph_p2: "C'est ce qu'un immeuble peut devenir. UNIO donne le tempo (le jeudi, dix-neuf heures), distribue les partitions (un accueil, une table, quelques cercles), puis s'efface. La musique, ce sont les voisins. Ça l'a toujours été.", l_title: "Il y a de la lumière.", l_text: "Les premiers immeubles ouvrent à Montréal en 2027. Rejoignez la liste et on vous écrit la semaine où les lumières s'allument près de chez vous.",
+      ph_p2: "C'est ce qu'un immeuble peut devenir. Unio donne le tempo (le jeudi, dix-neuf heures), distribue les partitions (un accueil, une table, quelques cercles), puis s'efface. La musique, ce sont les voisins. Ça l'a toujours été.", l_title: "Il y a de la lumière.", l_text: "Les premiers immeubles ouvrent à Montréal en 2027. Rejoignez la liste et on vous écrit la semaine où les lumières s'allument près de chez vous.",
       ar_title: "Autour de la table, autour de la ville",
       ar_intro: "Tout commence à la table du jeudi. Ensuite, Montréal : le marché, la montagne, le canal, la patinoire. Les résidents proposent, nous organisons, personne ne prend les présences.",
       a1: "Souper du jeudi", a1d: "Une longue table, chaque semaine.", a2: "Virée bagels", a2d: "Chauds, sortis du four, Mile End.", a3: "Matins de marché", a3d: "Jean-Talon ou Atwater, ensemble.",
@@ -651,6 +681,25 @@ h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(
     done.hidden = false;
   });
   applyLang(lang);
+
+  /* ---------- Smooth in-page scrolling ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (ev) {
+      var id = a.getAttribute("href").slice(1), target = id ? document.getElementById(id) : document.body;
+      if (!target) return;
+      ev.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      if (id === "join") { setTimeout(function () { var f = document.getElementById("first"); if (f && !f.closest("[hidden]")) f.focus({ preventScroll: true }); }, reduceMotion ? 0 : 500); }
+    });
+  });
+
+  /* ---------- Background video: respect reduced motion, pause when off screen ---------- */
+  var bg = document.querySelector(".band .bg");
+  if (bg) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { bg.removeAttribute("autoplay"); bg.pause(); }
+    else if ("IntersectionObserver" in window) { new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { bg.play().catch(function () {}); } else { bg.pause(); } }); }, { threshold: 0.05 }).observe(bg); }
+  }
 
   /* ---------- Badge animations: only while the band is on screen ---------- */
   var acts = document.getElementById("acts");
